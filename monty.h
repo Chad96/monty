@@ -50,6 +50,7 @@ int check_custom_mode(stack_t *custom_stack);
 int check_mode(stack_t *stack);
 void clean_up_tokens(void);
 void free_tokens(void);
+FILE *f_open_error(char *file_name);
 
 unsigned int token_arr_len(void);
 unsigned int count_tokens(void);
@@ -57,6 +58,7 @@ unsigned int absolute_value(int value);
 
 int run_monty(char **custom_op_toks);
 int run_monty(FILE *script_fd);
+int usage_error(void);
 int custom_main(int custom_argc, char **custom_argv);
 void set_op_tok_error(int error_code);
 

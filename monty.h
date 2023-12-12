@@ -44,49 +44,65 @@ typedef struct instruction_s
 
 /* PRIMARY INTERPRETER FUNCTIONS */
 void free_custom_stack(stack_t **custom_stack);
+int calculate_required_buffer_length(unsigned int number, unsigned int base);
 int initialize_custom_stack(stack_t **custom_stack);
 int check_custom_mode(stack_t *custom_stack);
 int check_mode(stack_t *stack);
+void clean_up_tokens(void);
 void free_tokens(void);
+
 unsigned int token_arr_len(void);
 unsigned int count_tokens(void);
+unsigned int absolute_value(int value);
+
 int run_monty(char **custom_op_toks);
 int run_monty(FILE *script_fd);
 int custom_main(int custom_argc, char **custom_argv);
 void set_op_tok_error(int error_code);
 
+
 /* OPCODE FUNCTIONS */
-void monty_push(stack_t **stack, unsigned int line_number);
-void monty_pall(stack_t **stack, unsigned int line_number);
-void monty_pint(stack_t **stack, unsigned int line_number);
-void monty_pop(stack_t **stack, unsigned int line_number);
-void monty_swap(stack_t **stack, unsigned int line_number);
-void monty_add(stack_t **stack, unsigned int line_number);
-void monty_nop(stack_t **stack, unsigned int line_number);
-void monty_sub(stack_t **stack, unsigned int line_number);
-void monty_div(stack_t **stack, unsigned int line_number);
-void monty_mul(stack_t **stack, unsigned int line_number);
-void monty_mod(stack_t **stack, unsigned int line_number);
-void monty_pchar(stack_t **stack, unsigned int line_number);
-void monty_pstr(stack_t **stack, unsigned int line_number);
+void custom_monty_push(stack_t **custom_stack, unsigned int custom_line_number);
+void custom_monty_pall(stack_t **custom_stack, unsigned int custom_line_number);
+void custom_monty_pint(stack_t **custom_stack, unsigned int custom_line_number);
+void custom_monty_pop(stack_t **custom_stack, unsigned int custom_line_number);
+void custom_monty_swap(stack_t **custom_stack, unsigned int custom_line_number);
+
+void custom_add(stack_t **stack, unsigned int line_number);
+void custom_sub(stack_t **stack, unsigned int line_number);
+void custom_div(stack_t **stack, unsigned int line_number);
+void custom_mul(stack_t **stack, unsigned int line_number);
+void custom_mod(stack_t **stack, unsigned int line_number);
+
+void custom_nop(stack_t **stack, unsigned int line_number);
+void custom_pchar(stack_t **stack, unsigned int line_number);
+void custom_pstr(stack_t **stack, unsigned int line_number);
+
+
 void custom_rotl(stack_t **custom_stack, unsigned int custom_line_number);
 void custom_rotr(stack_t **custom_stack, unsigned int custom_line_number);
 void custom_stack_mode(stack_t **custom_stack, unsigned int custom_line_number);
 void custom_queue_mode(stack_t **custom_stack, unsigned int custom_line_number);
+
 void clean_up_tokens(void);
 void (*resolve_opcode(char *op))(stack_t**, unsigned int);
-
+void fill_buffer_with_number_base(unsigned int number, unsigned int base,
 
 /* CUSTOM STANDARD LIBRARY FUNCTIONS */
+char *convert_int_to_string(int number);
 char **custom_strtow(char *input_str, char *delimiters);
 char *get_int(int n);
 char *get_next_word(char *input_str, char *delimiters);
 char **tokenize_input(FILE *custom_script_fd);
+char *buffer, int buffer_size);
 
 /* ERROR MESSAGES & ERROR CODES */
-int usage_error(void);
-int malloc_error(void);
+int display_usage_error(void);
+int handle_malloc_error(void);
+int handle_file_open_error(char *filename);
 int f_open_error(char *filename);
+int handle_unknown_opcode_error(char *opcode, unsigned int line_number);
+int handle_no_integer_error(unsigned int line_number);
 int unknown_op_error(char *opcode, unsigned int line_number);
 int no_int_error(unsigned int line_number);
 int pop_error(unsigned int line_number);

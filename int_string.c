@@ -4,7 +4,7 @@ char *convert_int_to_string(int number);
 unsigned int absolute_value(int value);
 int calculate_required_buffer_length(unsigned int number, unsigned int base);
 void fill_buffer_with_number_base(unsigned int number, unsigned int base,
-		char *buffer, int buffer_size);
+		char *buffer, int buffer_size)
 
 /**
  * convert_int_to_string - converts an integer to a string

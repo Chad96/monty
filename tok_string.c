@@ -1,4 +1,5 @@
 #include <stdlib.h>
+#include "monty.h"
 
 char **custom_strtow(char *input_str, char *delimiters);
 int is_delimiter(char character, char *delimiters);

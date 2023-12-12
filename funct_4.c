@@ -1,4 +1,4 @@
-#include "custom_monty.h"
+#include "monty.h"
 
 void custom_rotl(stack_t **custom_stack, unsigned int custom_line_number);
 void custom_rotr(stack_t **custom_stack, unsigned int custom_line_number);

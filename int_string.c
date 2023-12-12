@@ -1,4 +1,5 @@
 #include <stdlib.h>
+#include "monty.h"
 
 char *convert_int_to_string(int number);
 unsigned int absolute_value(int value);

@@ -51,7 +51,7 @@ char **custom_strtow(char *input_str, char *delimiters)
 		while (n < word_length)
 		{
 			word_array[i][n] = *(input_str + n);
-			n++
+			n++;
 		}
 		word_array[i][n] = '\0'; /* set end of str */
 		input_str = get_next_word(input_str, delimiters);
